@@ -2,14 +2,71 @@ import { useFormik } from "formik";
 import React from "react";
 import { useState } from "react";
 import { loginSchema } from "../schema/loginSchema";
-const onSubmit = async (values, actions) => {
-    console.log("values", values);
-    console.log("actions", actions);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    actions.resetForm();
-};
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { toastError, toastSuccess } from "../utils/toast";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../slices/userSlice";
 const LoginForm = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [login, setLogin] = useState(true);
+
+    const onSubmit = async (values, actions) => {
+        //console.log("values", values);
+        //console.log("actions", actions);
+        actions.resetForm();
+        if (!login) {
+            createUserWithEmailAndPassword(auth, values.email, values.password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log("create user", user);
+                    toastSuccess("user created successfully");
+                    const saveDetiails = {
+                        accessToken: user.accessToken,
+                        uid: user.uid,
+                        email: user.email,
+                    };
+                    dispatch(addUser(saveDetiails));
+                    navigate("/browse");
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    toastError(errorMessage);
+                    // ..
+                });
+            values.password = "";
+        } else {
+            signInWithEmailAndPassword(auth, values.email, values.password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log("sign in user", user);
+                    toastSuccess("user logged in successfully");
+                    dispatch(
+                        addUser({
+                            accessToken: user.accessToken,
+                            uid: user.uid,
+                            email: user.email,
+                        })
+                    );
+                    navigate("/browse");
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("error", errorCode, errorMessage);
+                    toastError(errorMessage);
+                });
+        }
+    };
+
     const {
         values,
         errors,
