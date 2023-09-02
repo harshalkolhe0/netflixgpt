@@ -11,6 +11,7 @@ export const options = {
     },
 };
 export const Image_URL = "https://image.tmdb.org/t/p/w500/";
+export const movie_url = "https://api.themoviedb.org/3/movie/";
 export const nowPlayingMoviesAPI =
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 export const popularMovesAPI =

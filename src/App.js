@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import store from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import ShowSelectedMovie from "./components/ShowSelectedMovie";
 function App() {
     const router = createBrowserRouter([
         {
@@ -15,6 +16,10 @@ function App() {
         {
             path: "/browse",
             element: <Browse />,
+        },
+        {
+            path: "/browse/:id",
+            element: <ShowSelectedMovie />,
         },
     ]);
     const persistor = persistStore(store);

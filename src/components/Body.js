@@ -4,9 +4,8 @@ import SecondaryComponent from "./SecondaryComponent";
 import useGetNowPlayingMovies from "../hooks/useGetNowPlayingMovies";
 const Body = () => {
     const res = useGetNowPlayingMovies();
-    console.log("res", res);
     return (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap bg-black absolute -z-20">
             <MainComponent />
             <SecondaryComponent />
         </div>

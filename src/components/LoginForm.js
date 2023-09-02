@@ -23,7 +23,6 @@ const LoginForm = () => {
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
-                    console.log("create user", user);
                     toastSuccess("user created successfully");
                     const saveDetiails = {
                         accessToken: user.accessToken,
@@ -46,7 +45,6 @@ const LoginForm = () => {
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
-                    console.log("sign in user", user);
                     toastSuccess("user logged in successfully");
                     dispatch(
                         addUser({
@@ -61,7 +59,6 @@ const LoginForm = () => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log("error", errorCode, errorMessage);
                     toastError(errorMessage);
                 });
         }
