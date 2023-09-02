@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userSlice from "./slices/userSlice";
+import nowPlayingMovies from "./slices/nowPlayingMovies";
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 const persistConfig = {
@@ -12,6 +13,6 @@ const pReducer = combineReducers({
 });
 const persistedReducer = persistReducer(persistConfig, pReducer);
 const store = configureStore({
-    reducer: { persistedReducer },
+    reducer: { persistedReducer, nowPlayingMovies: nowPlayingMovies },
 });
 export default store;

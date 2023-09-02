@@ -5,17 +5,17 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { toastError } from "../utils/toast";
+import Body from "./Body";
 const Browse = () => {
     const user = useSelector((store) => store.persistedReducer.userSlice);
     if (!user || !user.accessToken) {
         toastError("Need login to access netflix");
         return <Login />;
     }
-    console.log("user in browser", user);
     return (
         <div>
             <Header />
-            <p>Browser</p>
+            <Body />
         </div>
     );
 };
