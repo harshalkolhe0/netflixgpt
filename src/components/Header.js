@@ -13,7 +13,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
-        <div className="absolute top-0 left-0 z-20 w-full">
+        <div className="absolute top-0 left-0 z-20 w-full bg-gradient-to-b from-black to-transparent">
             <div className="flex justify-between">
                 <div className="h-6 w-52 brightness-110 ">
                     <Logo />

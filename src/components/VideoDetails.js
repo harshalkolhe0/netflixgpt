@@ -14,7 +14,7 @@ const VideoDetails = ({ movie }) => {
                         : overview}
                 </p>
                 <button
-                    className=" py-2 px-4 bg-slate-200 text-xl text-black rounded-md opacity-60 hover:opacity-100"
+                    className=" py-2 px-4 w-2/5 bg-slate-200 text-xl text-black rounded-md opacity-60 hover:opacity-100"
                     onClick={() => {
                         //console.log("Button Clicked");
                     }}

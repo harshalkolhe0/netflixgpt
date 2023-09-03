@@ -6,7 +6,7 @@ const VideoBackground = ({ id }) => {
     console.log("Video URL in bg", videoURL);
     return (
         videoURL?.key && (
-            <div className="w-screen aspect-video absolute -top-32 -left-4 pointer-events-none">
+            <div className="w-screen aspect-video absolute -top-20 -left-4 pointer-events-none">
                 <iframe
                     className="w-screen aspect-video"
                     src={
