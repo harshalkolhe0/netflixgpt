@@ -1,6 +1,6 @@
 {
     "hosting": {
-        "public": "build",
+        "public": "./dist/netflixgpt",
         "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
         "rewrites": [
             {
